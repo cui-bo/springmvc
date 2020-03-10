@@ -18,6 +18,10 @@ public class Stagiaire extends Contact implements Serializable {
         this.code = code;
     }
 
+    public Stagiaire(String nom, String prenom) {
+        super(nom, prenom);
+    }
+
     public Stagiaire(String nom, String prenom, Adresse adresse) {
         super(nom, prenom, adresse);
     }

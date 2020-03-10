@@ -96,4 +96,15 @@
         </property>
     </bean>
 
+    <bean id="stagiaire4" class="fr.dawan.springcore.beans.Stagiaire" parent="contact4">
+        <property name="code" value="JD-1234"/>
+        <property name="telephones">
+            <list merge="true">
+                <bean name="no1" class="fr.dawan.springcore.beans.Telephone">
+                    <constructor-arg value="987456321"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
 </beans>

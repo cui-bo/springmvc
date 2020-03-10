@@ -66,6 +66,11 @@ public class MainXml {
         // Test bean with map
         Contact contact5 = contexte.getBean("contact5", Contact.class);
         System.out.println(contact5);
+        System.out.println(contact5.getMapObject());
+
+        // Test bean with list merge=true
+        Stagiaire stagiaire4 = contexte.getBean("stagiaire4", Stagiaire.class);
+        System.out.println(stagiaire4);
 
 
         ((ConfigurableApplicationContext) contexte).close();

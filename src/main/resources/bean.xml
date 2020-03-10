@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="adresse.xml"/>
+
+    <bean name="formation1, formationjava"
+          class="fr.dawan.springcore.beans.Formation" scope="prototype">
+        <property name="prix" value="800.0"/>
+        <property name="intitule" value="mon intitule"/>
+    </bean>
+
+    <bean name="formation2"
+          class="fr.dawan.springcore.beans.Formation">
+        <constructor-arg value="formation autocad"/>
+        <constructor-arg value="3"/>
+        <constructor-arg value="2000.0"/>
+        <constructor-arg value="une formtaion autocad"/>
+    </bean>
+
+    <alias name="formation1" alias="formationlundi"/>
+
+
+    <bean name="formation3"
+          class="fr.dawan.springcore.beans.Formation">
+        <constructor-arg index="0" value="formation talend"/>
+        <constructor-arg name="prix" value="2000.0"/>
+        <constructor-arg type="int" value="5"/>
+        <constructor-arg value="une formtaion talend"/>
+    </bean>
+
+    <bean id="contact1" class="fr.dawan.springcore.beans.Contact">
+        <constructor-arg type="fr.dawan.springcore.beans.Adresse" ref="adresse1"/>
+        <property name="nom" value="cui"/>
+        <property name="prenom" value="bo"/>
+    </bean>
+
+    <bean name="contact2" class="fr.dawan.springcore.beans.Contact">
+        <constructor-arg value="Lamploi"/>
+        <constructor-arg value="Paul"/>
+        <constructor-arg ref="adresse2"/>
+    </bean>
+
+    <bean id="contact3" class="fr.dawan.springcore.beans.Contact">
+        <constructor-arg type="fr.dawan.springcore.beans.Adresse" ref="adresse3"/>
+    </bean>
+
+    <bean id="stagiaire1" class="fr.dawan.springcore.beans.Stagiaire">
+        <constructor-arg value="Lamploi"/>
+        <constructor-arg value="Paul"/>
+        <constructor-arg ref="adresse2"/>
+        <property name="code" value="JD-1234"/>
+    </bean>
+
+    <bean id="stagiaire2" class="fr.dawan.springcore.beans.Stagiaire" parent="contact2">
+        <property name="code" value="JD-1234"/>
+    </bean>
+
+    <bean id="stagiaire3" class="fr.dawan.springcore.beans.Stagiaire" parent="contact2">
+        <!-- property allows override the field nom	-->
+        <property name="nom" value="CUI"/>
+        <property name="code" value="JD-1234"/>
+    </bean>
+
+    <bean id="personne1" class="fr.dawan.springcore.beans.Personne" abstract="true">
+        <constructor-arg value="Rachel"/>
+        <constructor-arg value="Ratner"/>
+    </bean>
+
+    <bean id="contact4" class="fr.dawan.springcore.beans.Contact" parent="personne1">
+        <property name="adresse" ref="adresse1"/>
+		<property name="telephones">
+			<list>
+				<bean name="no1" class="fr.dawan.springcore.beans.Telephone">
+					<constructor-arg value="0123456789"/>
+				</bean>
+				<bean name="no2" class="fr.dawan.springcore.beans.Telephone">
+					<constructor-arg value="0123456789"/>
+				</bean>
+			</list>
+		</property>
+    </bean>
+
+    <bean id="contact5" class="fr.dawan.springcore.beans.Contact" parent="personne1">
+        <property name="adresse" ref="adresse1"/>
+        <property name="mapObject">
+            <map>
+                <entry key="1" value="value1"/>
+                <entry key="2">
+                    <bean name="no3" class="fr.dawan.springcore.beans.Telephone">
+                        <constructor-arg value="0123456789"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>
